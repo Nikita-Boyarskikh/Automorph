@@ -1,0 +1,20 @@
+<h1>Автоморфные числа</h1>
+<% if @error %>
+  <%= @error %>
+<% else %>
+  <table>
+    <tr>
+      <th>№</th>
+      <th>Число</th>
+      <th>Квадрат</th>
+    </tr>
+    <% @numbers ||= [] %>
+    <% @numbers.each_with_index do |n, i| %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= n %></td>
+        <td><%= n*n %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
