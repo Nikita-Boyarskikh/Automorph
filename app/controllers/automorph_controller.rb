@@ -4,7 +4,7 @@ class AutomorphController < ApplicationController
   def result
     n = begin
           Integer(params[:number])
-        rescue ArgumentError
+        rescue ArgumentError, TypeError
           nil
         end
     if n.nil? then @error = 'Number parameter is not an integer'

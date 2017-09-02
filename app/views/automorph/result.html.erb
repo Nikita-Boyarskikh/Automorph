@@ -1,6 +1,8 @@
 <h1>Автоморфные числа</h1>
 <% if @error %>
-  <%= @error %>
+  <p id="error">
+    <%= @error %>
+  </p>
 <% else %>
   <table>
     <tr>
@@ -11,9 +13,9 @@
     <% @numbers ||= [] %>
     <% @numbers.each_with_index do |n, i| %>
       <tr>
-        <td><%= i+1 %></td>
-        <td><%= n %></td>
-        <td><%= n*n %></td>
+        <td name="index"><%= i+1 %></td>
+        <td name="value"><%= n %></td>
+        <td name="square"><%= n*n %></td>
       </tr>
     <% end %>
   </table>
