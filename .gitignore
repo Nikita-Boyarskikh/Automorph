@@ -24,3 +24,6 @@
 
 # Ignore encrypted secrets key file.
 config/secrets.yml.key
+
+# RubyMine
+/.idea
