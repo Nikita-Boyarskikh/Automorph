@@ -2,8 +2,14 @@ class AutomorphController < ApplicationController
   def index; end
 
   def result
-    n = params[:number].to_i
-    if n > 100 or n <= 0 then @error = 'Enter number between 1 and 100'
+    n = begin
+          Integer(params[:number])
+        rescue ArgumentError, TypeError
+          nil
+        end
+    if n.nil? then @error = 'Number parameter is not an integer'
+    elsif n > 100 then @error = 'Number is too large'
+    elsif n <= 0 then @error = 'Number is too small'
     else
       pow10 = 10
       @numbers = []

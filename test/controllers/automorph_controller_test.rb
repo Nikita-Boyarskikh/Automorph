@@ -2,7 +2,6 @@ require 'test_helper'
 
 class AutomorphControllerTest < ActionDispatch::IntegrationTest
   ANSWERS = [1, 5, 6, 25, 76].freeze
-  ERROR_MESSAGE = 'Enter number between 1 and 100'
 
   test 'should get index' do
     get automorph_index_url
@@ -59,27 +58,27 @@ class AutomorphControllerTest < ActionDispatch::IntegrationTest
     get automorph_result_url(number: 101)
     assert_response :success
     assert_template :result
-    assert_select 'p#error', ERROR_MESSAGE
+    assert_select 'p#error', 'Number is too large'
   end
 
   test 'should not get result for non-positive numbers' do
     get automorph_result_url(number: -1)
     assert_response :success
     assert_template :result
-    assert_select 'p#error', ERROR_MESSAGE
+    assert_select 'p#error', 'Number is too small'
   end
 
   test 'should not get result for non numbers params' do
     get automorph_result_url(number:  'string')
     assert_response :success
     assert_template :result
-    assert_select 'p#error', ERROR_MESSAGE
+    assert_select 'p#error', 'Number parameter is not an integer'
   end
 
   test 'should not get result number param' do
     get automorph_result_url(number: nil)
     assert_response :success
     assert_template :result
-    assert_select 'p#error', ERROR_MESSAGE
+    assert_select 'p#error', 'Number parameter is not an integer'
   end
 end
