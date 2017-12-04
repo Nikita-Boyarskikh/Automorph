@@ -18,5 +18,15 @@ class AutomorphController < ApplicationController
         @numbers.push i if i * i % pow10 == i
       end
     end
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: {
+          error: @error,
+          result: @numbers
+        }
+      end
+    end
   end
 end
