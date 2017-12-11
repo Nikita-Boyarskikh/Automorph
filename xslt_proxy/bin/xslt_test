@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'nokogiri'
+
+if $PROGRAM_NAME == __FILE__
+  doc = Nokogiri::XML(File.read('response.xml'))
+  xslt = Nokogiri::XSLT(File.read('public/transform.xslt'))
+  puts xslt.transform(doc)
+end

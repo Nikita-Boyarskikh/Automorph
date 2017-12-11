@@ -1,0 +1,29 @@
+<h1>Автоморфные числа</h1>
+<%= form_tag proxy_output_path, method: 'GET' do %>
+    <p>
+      Введите число, до которого найти все автоморфные числа (от 1 до 100 включительно):
+      <%= number_field_tag('number', 10, min: 1, max: 100) %>
+    </p>
+    <p>
+      <fieldset>
+        <legend>Выбор способа преобразования XML</legend>
+        <label>
+          <input type="radio" name="transform" value="server" id="server-transform" checked>
+           XSLT преобразование на стороне сервера этого приложения
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="transform" value="without" id="without-transform">
+          Отображение сырого XML на стороне браузера
+        </label>
+        <br>
+        <label>
+          <input type="radio" name="transform" value="client" id="client-transform">
+          XSLT преобразование на стороне браузера с помощью
+        </label>
+      </fieldset>
+    </p>
+    <p>
+      <%= submit_tag 'Найти' %>
+    </p>
+<% end %>

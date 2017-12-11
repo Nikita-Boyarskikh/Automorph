@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hash>
+  <error nil="true"/>
+  <result type="array">
+    <result type="integer">1</result>
+    <result type="integer">5</result>
+    <result type="integer">6</result>
+  </result>
+</hash>
