@@ -19,7 +19,7 @@ class AutomorphControllerTest < ActionDispatch::IntegrationTest
     get automorph_index_url
     assert_response :success
     assert_select 'h1', 'Автоморфные числа'
-    assert_select %(form#input_form)
+    assert_select 'form#input_form'
     assert_select 'input[type=number][name=number]'
     assert_select 'input[type=submit]'
   end
