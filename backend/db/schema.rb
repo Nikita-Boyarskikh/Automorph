@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 20171214063021) do
 
   create_table "caches", force: :cascade do |t|
+    t.integer "n"
     t.string "error"
     t.string "result"
     t.datetime "created_at", null: false

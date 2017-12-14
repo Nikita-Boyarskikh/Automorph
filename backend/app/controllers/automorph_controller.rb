@@ -4,7 +4,7 @@ class AutomorphController < ApplicationController
   def index; end
 
   def result
-    data = Cache.find_by_id(@n)
+    data = Cache.find_by(n: @n)
 
     unless data
       calculate
@@ -26,7 +26,7 @@ class AutomorphController < ApplicationController
   protected
 
   def save
-    Cache.create(id: @n, result: @numbers, error: @error)
+    Cache.create(n: @n.to_s, result: @numbers, error: @error)
   end
 
   def calculate

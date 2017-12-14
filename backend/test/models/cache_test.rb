@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CacheTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test 'save data' do
+    Cache.create();
+  end
 end
