@@ -4,22 +4,16 @@ class AutomorphController < ApplicationController
   def index; end
 
   def result
-    if @n.nil? then @error = 'Number parameter is not an integer'
-    elsif @n > 100 then @error = 'Number is too large'
-    elsif @n <= 0 then @error = 'Number is too small'
-    else
-      pow10 = 10
-      @numbers = []
-      (1..@n).each do |i|
-        pow10 *= 10 if i >= 10 && pow10 == 10
-        @numbers.push i if i * i % pow10 == i
-      end
-    end
+    data = Cache.find_by_id(@n)
 
-    data = {
-      error: @error,
-      result: @numbers
-    }
+    unless data
+      calculate
+      save
+      data = {
+        error: @error,
+        result: @numbers
+      }
+    end
 
     respond_to do |format|
       format.html
@@ -30,6 +24,27 @@ class AutomorphController < ApplicationController
   end
 
   protected
+
+  def save
+    Cache.create(id: @n, result: @numbers, error: @error)
+  end
+
+  def calculate
+    if @n.nil?
+      @error = 'Number parameter is not an integer'
+    elsif @n > 100
+      @error = 'Number is too large'
+    elsif @n <= 0
+      @error = 'Number is too small'
+    else
+      pow10 = 10
+      @numbers = []
+      (1..@n).each do |i|
+        pow10 *= 10 if i >= 10 && pow10 == 10
+        @numbers.push i if i * i % pow10 == i
+      end
+    end
+  end
 
   def parse_params
     @n = begin
