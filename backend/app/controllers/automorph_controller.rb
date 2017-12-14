@@ -4,22 +4,30 @@ class AutomorphController < ApplicationController
   def index; end
 
   def result
-    data = Cache.find_by(n: @n)
+    if @n.nil?
+      @error = 'Number parameter is not an integer'
+    elsif @n > 100
+      @error = 'Number is too large'
+    elsif @n <= 0
+      @error = 'Number is too small'
+    else
+      data = Cache.find_by(n: @n)
 
-    unless data
-      calculate
-      save
-      data = {
-        error: @error,
-        result: @numbers
-      }
+      unless data
+        calculate
+        save
+        data = {
+          error: @error,
+          result: @numbers
+        }
+      end
     end
 
     respond_to do |format|
       format.html
-      format.json { render json: data }
-      format.xml { render xml: data }
-      format.rss { render xml: data }
+      format.json { render json: data.to_json }
+      format.xml { render xml: data.to_xml }
+      format.rss { render xml: data.to_xml }
     end
   end
 

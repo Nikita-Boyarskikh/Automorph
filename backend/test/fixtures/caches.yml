@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  'n': 
-  success: false
+  'n': 1
   error: MyString
   result: MyString
+  created_at: '00:00:00 01-01-1997'
+  updated_at: '00:00:00 01-01-1997'
 
 two:
-  'n': 
-  success: false
+  'n':
   error: MyString
   result: MyString
+  created_at: '00:00:00 01-01-1997'
+  updated_at: '00:00:00 01-01-1997'
