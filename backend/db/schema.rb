@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214063021) do
+ActiveRecord::Schema.define(version: 20171216204326) do
 
   create_table "caches", force: :cascade do |t|
     t.integer "n"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171214063021) do
     t.string "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["n"], name: "index_caches_on_n", unique: true
   end
 
 end

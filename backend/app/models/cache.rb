@@ -1,7 +1,7 @@
 class Cache < ApplicationRecord
-  validates :n, numericality: {
-    greater_than: 0,
-    less_then_or_equal_to: 100
-  }, allow_blank: true
+  validates :n, allow_blank: true,
+            uniqueness: true,
+            numericality: true,
+            inclusion: { in: 1..100 }
   serialize :result, Array
 end
