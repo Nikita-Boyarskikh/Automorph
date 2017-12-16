@@ -13,7 +13,9 @@ class AutomorphController < ApplicationController
     else
       data = Cache.find_by(n: @n)
 
-      unless data
+      if data
+        data = data.serializable_hash
+      else
         calculate
         save
         data = {
@@ -25,9 +27,9 @@ class AutomorphController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render json: data.to_json }
-      format.xml { render xml: data.to_xml }
-      format.rss { render xml: data.to_xml }
+      format.json { render json: data }
+      format.xml { render xml: data }
+      format.rss { render xml: data }
     end
   end
 
@@ -38,19 +40,11 @@ class AutomorphController < ApplicationController
   end
 
   def calculate
-    if @n.nil?
-      @error = 'Number parameter is not an integer'
-    elsif @n > 100
-      @error = 'Number is too large'
-    elsif @n <= 0
-      @error = 'Number is too small'
-    else
-      pow10 = 10
-      @numbers = []
-      (1..@n).each do |i|
-        pow10 *= 10 if i >= 10 && pow10 == 10
-        @numbers.push i if i * i % pow10 == i
-      end
+    pow10 = 10
+    @numbers = []
+    (1..@n).each do |i|
+      pow10 *= 10 if i >= 10 && pow10 == 10
+      @numbers.push i if i * i % pow10 == i
     end
   end
 
