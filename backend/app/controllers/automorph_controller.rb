@@ -3,6 +3,12 @@ class AutomorphController < ApplicationController
 
   def index; end
 
+  def db
+    respond_to do |format|
+      format.xml { render xml: Cache.all.map { |c| c.serializable_hash } }
+    end
+  end
+
   def result
     if @n.nil?
       @error = 'Number parameter is not an integer'
