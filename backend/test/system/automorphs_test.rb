@@ -4,9 +4,10 @@ class AutomorphsTest < ApplicationSystemTestCase
   ANSWERS = [1, 5, 6, 25, 76].freeze
 
   # Test AJAX
-  class Ajax < ApplicationSystemTestCase
+  class Ajax < AutomorphsTest
     def setup
       Capybara.current_driver = :selenium_chrome
+      signin_as_user1
     end
 
     test 'should get result for automorph numbers less or equal then 25' do

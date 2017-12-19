@@ -1,0 +1,20 @@
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @user.nickname %>
+</p>
+
+<hr>
+
+<%= link_to 'All users', users_path %>
+<%= link_to 'Edit this user', edit_user_path(current_user) %>
+<%= link_to 'Delete account', user_path(current_user), method: 'DELETE', style: 'color: red' %>
+
+<hr>
+
+<%= link_to 'Begin calculation', automorph_path %>
+<%= link_to 'Get db contains as xml', automorph_db_path(format: 'xml') %>

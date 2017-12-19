@@ -7,3 +7,14 @@ class ActiveSupport::TestCase
 
   # Add more helper methods to be used by all tests here...
 end
+
+class ActionDispatch::IntegrationTest
+  protected
+
+  def signin_as_user1
+    post sessions_create_url(session: {
+        nickname: users(:one).nickname,
+        password: 'pass1'
+    })
+  end
+end

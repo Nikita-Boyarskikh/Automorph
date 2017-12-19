@@ -22,8 +22,12 @@ function show_result(data) {
     results.append(table);
 }
 
-$(document).ready(function () {
+function main() {
     $('#input_form').bind('ajax:success', function (xrs, data, status) {
         show_result(xrs.detail[0]);
     });
-});
+}
+
+// Start listeners
+$(document).ready(main);
+$(document).on('turbolinks:load', main);

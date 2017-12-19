@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email: 'N02@yandex.ru'
+  nickname: 'n02'
+  password_digest: '$2a$10$OF1nvBFQK9yFs50ZDeU28O2VrM8lr2sKBNSRHE68A/aA7JQRsIcai' # pass1
+  created_at: '00:00:00 01-01-1997'
+  updated_at: '00:00:00 01-01-1997'
+
+two:
+  email: 'egor@life.ru'
+  nickname: 'egor'
+  password_digest: '$2a$10$.SXAA4Zd7wEe70g/YZ82X.BuT03bKwN36lCGSe/DZOMgVd28TA/cO' # pass2
+  created_at: '00:00:00 01-01-1997'
+  updated_at: '00:00:00 01-01-1997'

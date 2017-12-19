@@ -4,11 +4,21 @@
     <title>Automorph</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   </head>
 
   <body>
+    <% flash.each do |k, v| %>
+        <div id="<%= k %>"><%= v %></div>
+    <% end %>
+    <% if current_user %>
+      <p>
+        <i>Welcome, <%= link_to current_user.nickname, current_user %>!</i>
+        <%= link_to 'Logout', signout_path(current_user.id), method: 'DELETE' %>
+      </p>
+      <hr>
+    <% end %>
     <%= yield %>
   </body>
 </html>

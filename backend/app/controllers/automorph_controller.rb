@@ -1,5 +1,6 @@
 class AutomorphController < ApplicationController
   before_action :parse_params, only: :result
+  before_action :signed_in_user
 
   def index; end
 
@@ -24,12 +25,15 @@ class AutomorphController < ApplicationController
       else
         calculate
         save
+
         data = {
           error: @error,
           result: @numbers
         }
       end
     end
+
+    data = { error: @error } if data.nil?
 
     respond_to do |format|
       format.html
@@ -54,11 +58,17 @@ class AutomorphController < ApplicationController
     end
   end
 
+  # Before filters
+
   def parse_params
     @n = begin
       Integer(params[:number])
     rescue ArgumentError, TypeError
       nil
     end
+  end
+
+  def signed_in_user
+    redirect_to signin_url, notice: 'Please sign in.' unless signed_in?
   end
 end

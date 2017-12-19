@@ -1,5 +1,5 @@
 <h1>Автоморфные числа</h1>
-<%= form_tag(automorph_result_path + '.json', method: 'GET', remote: true, id: 'input_form') do %>
+<%= form_tag(automorph_result_path + '.json', method: 'GET', remote: true, data: { :'with-credentials' => true }, id: 'input_form') do %>
     <p>
         Введите число, до которого найти все автоморфные числа (от 1 до 100 включительно): 
         <%= number_field_tag('number', 10, min: 1, max: 100) %>
