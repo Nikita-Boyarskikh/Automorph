@@ -1,10 +1,10 @@
 require 'application_system_test_case'
 
-class AutomorphsTest < ApplicationSystemTestCase
+class AutomorphTest < ApplicationSystemTestCase
   ANSWERS = [1, 5, 6, 25, 76].freeze
 
   # Test AJAX
-  class Ajax < AutomorphsTest
+  class Ajax < AutomorphTest
     def setup
       Capybara.current_driver = :selenium_chrome
       signin_as_user1
